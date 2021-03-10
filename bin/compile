@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo -n "-----> Setting CA Cert"
+echo $MEGLERMATCH_CA_CERT > meglermatch_ca_cert.pem
+
+echo -n "-----> Setting Client Cert"
+echo $MEGLERMATCH_CERT > meglermatch_cert.pem
+
+echo -n "-----> Setting Client Key"
+echo $MEGLERMATCH_KEY > meglermatch_key.pem
+chmod 0600 meglermatch_key.pem

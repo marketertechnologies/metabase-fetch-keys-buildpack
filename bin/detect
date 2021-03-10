@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ ! -z $MEGLERMATCH_CA_CERT ] && [ ! -z $MEGLERMATCH_CERT ] && [ ! -z $MEGLERMATCH_KEY ]; then
+  echo "All certificates set"
+  exit 0
+else
+  echo "One or more certificates missing"
+  exit 1
+fi
