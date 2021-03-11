@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 export_env_dir() {
   env_dir=$1
   acceptlist_regex=${2:-''}
@@ -15,14 +17,17 @@ export_env_dir() {
 
 export_env_dir
 
+export CERTS_DIR="$1/target/certs"
+mkdir -p $CERTS_DIR
+
 echo -n "-----> Setting CA Cert"
-echo $MEGLERMATCH_CA_CERT > "$1/target/meglermatch_ca_cert.pem"
+echo $MEGLERMATCH_CA_CERT > "$CERTS_DIR/meglermatch_ca_cert.pem"
 
 echo -n "-----> Setting Client Cert"
-echo $MEGLERMATCH_CERT > "$1/target/meglermatch_cert.pem"
+echo $MEGLERMATCH_CERT > "$CERTS_DIR/meglermatch_cert.pem"
 
 echo -n "-----> Setting Client Key"
-echo $MEGLERMATCH_KEY > "$1/target/meglermatch_key.pem"
-chmod 0600 "$1/target/meglermatch_key.pem"
+echo $MEGLERMATCH_KEY > "$CERTS_DIR/meglermatch_key.pem"
+chmod 0600 "$CERTS_DIR/meglermatch_key.pem"
 
 echo "Installed to: `pwd`"
