@@ -28,8 +28,9 @@ echo -n "-----> Setting Client Cert"
 echo $MEGLERMATCH_CERT > "$CERTS_DIR/meglermatch_cert.pem"
 
 echo -n "-----> Setting Client Key"
-echo $MEGLERMATCH_KEY > "$CERTS_DIR/meglermatch_key.pem"
+echo $MEGLERMATCH_KEY | base64 --decode > > "$CERTS_DIR/meglermatch_key.pem"
 chmod 0600 "$CERTS_DIR/meglermatch_key.pem"
 
 cd $CERTS_DIR
+
 openssl rsa -outform der -inform pem -in meglermatch_key.pem -out keyfile-encrypted.key
