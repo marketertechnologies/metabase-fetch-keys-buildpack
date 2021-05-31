@@ -22,10 +22,10 @@ CERTS_DIR="$1/target/certs"
 mkdir -p $CERTS_DIR
 
 echo -n "-----> Setting CA Cert"
-echo $MEGLERMATCH_CA_CERT > "$CERTS_DIR/meglermatch_ca_cert.pem"
+echo $MEGLERMATCH_CA_CERT | base64 --decode > "$CERTS_DIR/meglermatch_ca_cert.pem"
 
 echo -n "-----> Setting Client Cert"
-echo $MEGLERMATCH_CERT > "$CERTS_DIR/meglermatch_cert.pem"
+echo $MEGLERMATCH_CERT | base64 --decode > "$CERTS_DIR/meglermatch_cert.pem"
 
 echo -n "-----> Setting Client Key"
 echo $MEGLERMATCH_KEY | base64 --decode > "$CERTS_DIR/meglermatch_key.pem"
